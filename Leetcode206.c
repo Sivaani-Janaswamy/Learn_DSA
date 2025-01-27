@@ -5,7 +5,9 @@ struct ListNode{
     int val;
     struct ListNode* next;
 }ListNode;
-struct ListNode* reverseList(struct ListNode* head) {
+/*
+struct ListNode* reverseList(struct ListNode* head) { //iterative approach
+
       struct ListNode* prev = NULL;
       struct ListNode* curr = head;
       struct ListNode* nxt;
@@ -16,6 +18,16 @@ struct ListNode* reverseList(struct ListNode* head) {
         curr = nxt;
       }
       return prev;
+}*/ 
+struct ListNode* reverseList(struct ListNode* head){//recursion
+   if(head == NULL || head->next == NULL){
+    return head;
+   }
+    struct ListNode* newhead = reverseList(head->next);
+    head->next->next = head;
+    head->next = NULL;
+    return newhead;
+   
 }
 struct ListNode* createNode(int val) {
     struct ListNode* newNode = (struct ListNode*)malloc(sizeof(struct ListNode));
