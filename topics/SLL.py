@@ -47,9 +47,49 @@ class SLL:
             print(temp.val,end=" -> ")
             temp = temp.next
         print("NULL\n")
+
+    def search(self,ele):
+        temp = self.head
+        while(temp):
+            if(temp.val == ele):
+                return True
+        return False
+    def deleteAtBegin(self):
+        if self.head is None:
+            return
+        self.head = self.head.next  
+
+    def deleteAtEnd(self):
+        if self.head is None:
+            return
+        if self.head.next is None:
+            self.head = None
+            return
+        temp = self.head
+        while temp.next.next:
+            temp = temp.next
+        temp.next = None  
+
+    def deleteAtPos(self, pos):
+        if self.head is None:
+            return
+        if pos == 0:
+            self.head = self.head.next
+            return
+        temp = self.head
+        i = 0
+        while temp is not None and i < pos - 1:
+            temp = temp.next
+            i += 1
+        if temp is None or temp.next is None:
+            return
+        temp.next = temp.next.next  
+        
+
     
 slist = SLL()
 slist.insertAtBegin(10)
 slist.insertAtEnd(20)
 slist.insertAtPos(40,2)
 slist.traversal()
+slist.deleteAtBegin(10)
