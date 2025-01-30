@@ -93,11 +93,23 @@ void myHashMapFree(MyHashMap* obj) {
     free(obj);
 }
 
-/**
- * Example usage:
- * MyHashMap* obj = myHashMapCreate();
- * myHashMapPut(obj, 1, 10);
- * int param_2 = myHashMapGet(obj, 1);
- * myHashMapRemove(obj, 1);
- * myHashMapFree(obj);
- */
+int main() {
+    MyHashMap* obj = myHashMapCreate();
+    
+    myHashMapPut(obj, 1, 10);
+    myHashMapPut(obj, 2, 20);
+    
+    printf("Value for key 1: %d\n", myHashMapGet(obj, 1)); // Should print 10
+    printf("Value for key 2: %d\n", myHashMapGet(obj, 2)); // Should print 20
+    printf("Value for key 3: %d\n", myHashMapGet(obj, 3)); // Should print -1 (not found)
+    
+    myHashMapPut(obj, 2, 30); // Update value for key 2
+    printf("Updated value for key 2: %d\n", myHashMapGet(obj, 2)); // Should print 30
+    
+    myHashMapRemove(obj, 1); // Remove key 1
+    printf("Value for key 1 after removal: %d\n", myHashMapGet(obj, 1)); // Should print -1 (not found)
+    
+    myHashMapFree(obj);
+    
+    return 0;
+}
