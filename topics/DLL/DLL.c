@@ -112,7 +112,7 @@ void freeList() {
 
 // Main function
 int main() {
-    printf("Main Function\n")
+    printf("Main Function\n");
     int n, pos, ele;
     while (1) {
         printf("\n---------------------\n");
