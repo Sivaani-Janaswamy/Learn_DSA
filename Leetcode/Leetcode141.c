@@ -7,7 +7,7 @@ struct ListNode {
     struct ListNode *next;
  };
 bool hasCycle(struct ListNode *head);
-bool hasCycle(struct ListNode *head) {
+bool hasCycle(struct ListNode *head) { // this is the floyd's cycle with slow and fast pointers
      struct ListNode *slow = head;
      struct ListNode *fast = head;
      while(fast!=NULL && fast->next!=NULL){

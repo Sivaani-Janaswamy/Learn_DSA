@@ -83,10 +83,7 @@ class SLL:
             i += 1
         if temp is None or temp.next is None:
             return
-        temp.next = temp.next.next  
-        
-
-    
+        temp.next = temp.next.next      
 slist = SLL()
 slist.insertAtBegin(10)
 slist.insertAtEnd(20)
