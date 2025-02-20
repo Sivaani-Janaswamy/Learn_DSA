@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/sivaa/MyFiles/vsc/learn_dsa/topics/DLL",
-      "program": "c:/Users/sivaa/MyFiles/vsc/learn_dsa/topics/DLL/build/Debug/outDebug",
+      "cwd": "c:/Users/sivaa/MyFiles/vsc/learn_dsa/leetcode",
+      "program": "c:/Users/sivaa/MyFiles/vsc/learn_dsa/leetcode/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
