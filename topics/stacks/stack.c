@@ -15,5 +15,8 @@ bool isEmpty(int top){
     return false;
 }
 void push(int *top, int stacks[], int ele){
-    if()
+    if(isFull){
+        printf("Stack is Full! Cannot Insert.");
+        return;
+    }
 }
