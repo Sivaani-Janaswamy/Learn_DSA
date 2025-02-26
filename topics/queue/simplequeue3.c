@@ -9,16 +9,6 @@ typedef struct Queue {
     int rear;
 } Queue;
 
-void initQ(Queue* q);
-int isEmpty(Queue* q);
-int isFull(Queue* q);
-void enqueue(Queue* q, int val);
-void dequeueFront(Queue* q);
-void dequeueRear(Queue* q);
-void peek(Queue* q);
-void rear(Queue* q);
-void display(Queue* q);
-
 void initQ(Queue* q) {
     q->front = -1;
     q->rear = -1;
@@ -32,15 +22,29 @@ int isFull(Queue* q) {
     return q->rear == max - 1;
 }
 
-void enqueue(Queue* q, int val) {
+void enqueueRear(Queue* q, int val) {
     if (isFull(q)) {
-        printf("Queue is full! Cannot insert.\n");
+        printf("Queue is full! Cannot insert at rear.\n");
         return;
     }
     if (isEmpty(q)) {
-        q->front = 0;
+        q->front = 0; // Initialize front on first insert
     }
     q->arr[++q->rear] = val;
+}
+
+void enqueueFront(Queue* q, int val) {
+    if (isFull(q)) {
+        printf("Queue is full! Cannot insert at front.\n");
+        return;
+    }
+    if (isEmpty(q)) {
+        q->front = q->rear = 0; // Initialize both for the first element
+    } else if (q->front > 0) {
+        q->arr[--q->front] = val;
+    } else {
+        printf("Cannot insert at front, no space available!\n");
+    }
 }
 
 void dequeueFront(Queue* q) {
@@ -48,27 +52,17 @@ void dequeueFront(Queue* q) {
         printf("Cannot delete. Queue is empty.\n");
         return;
     }
+    printf("Deleted from Front: %d\n", q->arr[q->front]);
     if (q->front == q->rear) {
-        initQ(q);
+        initQ(q); // Reset queue when last element is deleted
     } else {
         q->front++;
-    }
-}
-void dequeueRear(Queue* q) {
-    if (isEmpty(q)) {
-        printf("Cannot delete. Queue is empty.\n");
-        return;
-    }
-    if (q->front == q->rear) {
-        initQ(q);
-    } else {
-        q->rear--;
     }
 }
 
 void peek(Queue* q) {
     if (isEmpty(q)) {
-        printf("Queue is empty. Cannot Peek!\n");
+        printf("Queue is empty. Cannot peek!\n");
         return;
     }
     printf("Front: %d\n", q->arr[q->front]);
@@ -87,6 +81,7 @@ void display(Queue* q) {
         printf("Queue is empty. Cannot display!\n");
         return;
     }
+    printf("Queue: ");
     for (int i = q->front; i <= q->rear; i++) {
         printf("%d ", q->arr[i]);
     }
@@ -99,27 +94,29 @@ int main() {
     int ch = 0, val;
 
     while (true) {
-        printf("\nSimple Queue\n");
-        printf("1.Enqueue \n2.Dequeue at Front \n3.Dequeue at Rear \n4.isFull \n5.isEmpty \n6.Peek \n7.Rear \n8.Display \n9.Exit\n");
+        printf("\nOutput Restricted Queue\n");
+        printf("1. Enqueue at Rear\n2. Enqueue at Front\n3. Dequeue \n4. isFull\n5. isEmpty\n6. Peek\n7. Rear\n8. Display\n9. Exit\n");
         scanf("%d", &ch);
 
         switch (ch) {
             case 1:
-                printf("Enter value: \n");
+                printf("Enter value: ");
                 scanf("%d", &val);
-                enqueue(&q, val);
+                enqueueRear(&q, val);
                 break;
             case 2:
-                dequeueFront(&q);
+                printf("Enter value: ");
+                scanf("%d", &val);
+                enqueueFront(&q, val);
                 break;
             case 3:
-                dequeueRear(&q);
+                dequeueFront(&q);
                 break;
             case 4:
-                printf("Is Full : %d\n", isFull(&q));
+                printf("Is Full: %d\n", isFull(&q));
                 break;
             case 5:
-                printf("Is Empty : %d\n", isEmpty(&q));
+                printf("Is Empty: %d\n", isEmpty(&q));
                 break;
             case 6:
                 peek(&q);
