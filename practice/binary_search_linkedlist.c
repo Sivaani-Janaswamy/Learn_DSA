@@ -30,7 +30,7 @@ int length(Node* head){
         return 0;
     }
     Node* temp = head;
-    int len = 1;
+    int len = 0;
     while(temp!=NULL){
        len++;
        temp = temp->next;
@@ -38,11 +38,17 @@ int length(Node* head){
     return len;
 }
 int traversetoNode(Node* head, int mid){
+    if(head==NULL){
+        return 0;
+    }
     int pos = 0;
     Node* temp = head;
     while(pos<mid && temp!=NULL){
         pos++;
         temp = temp->next;
+    }
+    if(temp==NULL){
+        return -1;
     }
     return temp->data;
 }
@@ -71,9 +77,9 @@ int main() {
 
     Node* head = createnode(1);
     head->next = createnode(2);
-    head->next->next = createnode(8);
-    head->next->next->next = createnode(5);
-    head->next->next->next->next = createnode(4);
+    head->next->next = createnode(3);
+    head->next->next->next = createnode(4);
+    head->next->next->next->next = createnode(5);
 
     traversal(head);
 
@@ -81,7 +87,7 @@ int main() {
     printf("Element to search: ");
     scanf("%d", &key);
 
-    int position = linearsearch(head, key);
+    int position = binarysearch(head, key);
     if (position != -1) {
         printf("Element is found at position: %d\n", position);
     } else {
